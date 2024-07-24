@@ -1,0 +1,172 @@
+{
+  "main": {
+    "id": "3efd1fe7a7a20284",
+    "type": "split",
+    "children": [
+      {
+        "id": "fcce5ea4910fd12d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f6f5aa12db371d38",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Machine_Name/04. Explotación/Explotación.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "752f7bac90960d92",
+    "type": "split",
+    "children": [
+      {
+        "id": "5065dd1c770179c3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "68754eb7bd1ec3d7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "14f2a4456e1631a8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "63a0600e8631df40",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "73b4b5534d4b8278",
+    "type": "split",
+    "children": [
+      {
+        "id": "50a796e0858f834a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "62a33ee3845d0a36",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Machine_Name/04. Explotación/Explotación.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "78bf640651c6ccc6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Machine_Name/04. Explotación/Explotación.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "10964bfa5399816b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "37c009045412ff8a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Machine_Name/04. Explotación/Explotación.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false
+    }
+  },
+  "active": "f6f5aa12db371d38",
+  "lastOpenFiles": [
+    "Machine_Name/03. Enumeración/Recolección Activa.md",
+    "Machine_Name/02. Reconocimiento/Recolección Pasiva.md",
+    "Machine_Name/06. Notas Adicionales/Referencias.md",
+    "Machine_Name/05. Post Explotación/Post Explotación.md",
+    "Machine_Name/04. Explotación/Explotación.md",
+    "Machine_Name/01. Información General/Información_General.md",
+    "Machine_Name/02. Reconocimiento/Recolección Pasiva",
+    "Explicación Carpetas.md",
+    "Pasted image 20240722202318.png",
+    "Pasted image 20240722201904.png",
+    "Machine_Name/Images/Pasted image 20240722201645.png",
+    "Machine_Name/Images",
+    "Pasted image 20240722201259.png",
+    "Machine_Name/01. Información General",
+    "Machine_Name/06. Notas Adicionales",
+    "Machine_Name/05. Post Explotación",
+    "Machine_Name/04. Explotación",
+    "Machine_Name/03. Enumeración",
+    "Machine_Name/02. Reconocimiento",
+    "Machine_Name"
+  ]
+}
