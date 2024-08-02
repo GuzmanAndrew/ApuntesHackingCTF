@@ -10,25 +10,11 @@ macchanger -l | grep -i "Oracle"
 ```
 nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 192.168.1.6 -oG allPorts
 ``` 
-4. El resultado es el siguiente
-```
-PORT   STATE SERVICE VERSION
-22/tcp  closed ssh
-80/tcp  open   http     Apache httpd
-443/tcp open   ssl/http Apache httpd
-```
-5. Ahora se ejecuta este otro comando para poder obtener los puertos y que queden copiados en la clicboard
+4. Ahora se ejecuta este otro comando para poder obtener los puertos y que queden copiados en la clicboard
 ```
 extractPorts allPorts
 ``` 
-6. Ya teniendo esos puertos ahora se puede hacer un analisis mas detallado de ellos
+5. Ya teniendo esos puertos ahora se puede hacer un analisis mas detallado de ellos
 ```
-nmap -sCV -p21,22,25,80,110,119,4555 192.168.1.11 -oN targeted
+nmap -sCV -p 21,22,25,80,110,119,4555 192.168.1.11 -oN targeted
 ``` 
-7. Este es el resultado
-```
-PORT   STATE SERVICE VERSION
-22/tcp  closed ssh
-80/tcp  open   http     Apache httpd
-443/tcp open   ssl/http Apache httpd
-```

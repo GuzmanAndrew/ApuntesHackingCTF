@@ -1,3 +1,4 @@
+### Atajos Bspwn
 Ubicación archivo configuración atajos **cat .config/sxhkd/sxhkdrc**
 1. Cambio pestañas
 ```
@@ -43,7 +44,7 @@ target reset
 ```
 hacer clic dos veces a la tecla escape
 ``` 
-## Atajos Tmux
+### Atajos Tmux
 Ubicación archivo de configuración **cat .tmux.conf.local**
 El comando principal es **ctrl + a** y lo llamaremos en este caso **principal** 
 1. Crear nueva ventana
@@ -69,4 +70,34 @@ principal + _
 6. Cerra ventana
 ```
 principal + x o exit
+``` 
+### Modificación TTY
+
+1. Primer paso
+```
+script /dev/null -c bash
+``` 
+2. Despues escribimos esta combinación de teclas
+```
+ctrl + z
+``` 
+3. Luego escribimos esto
+```
+stty raw -echo; fg
+``` 
+4. Siguiente paso escribimos el reset
+```
+reset xterm
+``` 
+5. Luego seteamos la variable TERM
+```
+export TERM=xterm
+``` 
+6. Despues en una terminal de nuestro Kali Linux revisamos las filas y columnas que tenemos
+```
+stty size
+``` 
+7. Con el resultado anterior seteamos las filas y columnas de la stty de la maquina victima
+```
+stty rows 43 cols 167
 ``` 
