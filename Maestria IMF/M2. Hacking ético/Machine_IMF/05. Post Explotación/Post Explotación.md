@@ -49,3 +49,6 @@
 ```
 FLAG{YEAH_SETUID_FILES_RuL3S}
 ``` 
+### Segunda opción para el exploit
+
+![[Pasted image 20240804024904.png]]
