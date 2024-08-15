@@ -1,14 +1,9 @@
-package com.ctf.vuelos_servicio.models;
+package com.ctf.vuelos_servicio.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * The persistent class for the vuelos database table.
- * 
- */
 
 @Data
 @Entity

@@ -1,7 +1,7 @@
 package com.ctf.vuelos_servicio.controllers;
 
-import com.ctf.vuelos_servicio.models.Vuelo;
-import com.ctf.vuelos_servicio.services.VueloServiceImpl;
+import com.ctf.vuelos_servicio.entities.Vuelo;
+import com.ctf.vuelos_servicio.services.impl.VueloServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

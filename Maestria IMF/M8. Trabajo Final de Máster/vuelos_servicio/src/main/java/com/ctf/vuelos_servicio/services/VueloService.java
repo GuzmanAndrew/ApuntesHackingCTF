@@ -1,6 +1,6 @@
 package com.ctf.vuelos_servicio.services;
 
-import com.ctf.vuelos_servicio.models.Vuelo;
+import com.ctf.vuelos_servicio.entities.Vuelo;
 
 import java.util.List;
 

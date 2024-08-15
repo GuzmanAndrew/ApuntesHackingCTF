@@ -1,7 +1,8 @@
-package com.ctf.vuelos_servicio.services;
+package com.ctf.vuelos_servicio.services.impl;
 
-import com.ctf.vuelos_servicio.models.Vuelo;
+import com.ctf.vuelos_servicio.entities.Vuelo;
 import com.ctf.vuelos_servicio.repositories.VueloRepository;
+import com.ctf.vuelos_servicio.services.VueloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
