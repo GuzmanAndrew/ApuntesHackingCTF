@@ -1,3 +1,27 @@
 body {
    font-family: Arial, sans-serif;
 }
+
+/* Login & Register */
+
+.form-container {
+   margin-top: 50px;
+}
+
+.form-container .form-heading {
+   text-align: center;
+   margin-bottom: 30px;
+}
+
+.form-container .form-control {
+   margin-bottom: 15px;
+}
+
+.toggle-link {
+   cursor: pointer;
+   color: #007bff;
+}
+
+.toggle-link:hover {
+   text-decoration: underline;
+}

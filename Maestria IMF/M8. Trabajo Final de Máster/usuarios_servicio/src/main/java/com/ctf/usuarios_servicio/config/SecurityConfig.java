@@ -26,6 +26,7 @@ public class SecurityConfig {
       http
               .csrf(csrf -> csrf.disable())
               .authorizeRequests(auth -> auth
+                      .requestMatchers("/usuarios/create/**").permitAll()
                       .requestMatchers("/usuarios/delete/**").hasRole("ADMIN")
                       .requestMatchers("/usuarios/**").authenticated()
                       .anyRequest().permitAll()

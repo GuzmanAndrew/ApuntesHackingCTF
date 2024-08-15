@@ -5,49 +5,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
    function populateHoteles() {
       fetch('http://localhost:8000/hoteles/all')
-          .then(response => response.json())
-          .then(data => {
-             console.log('Datos de hoteles recibidos:', data);
-             const hotelSelect = document.getElementById('hotel');
-             hotelSelect.innerHTML = '<option value="">Selecciona una opción</option>';
-             data.forEach(hotel => {
-                const option = document.createElement('option');
-                option.value = hotel.idHotel;
-                /*option.textContent = `Hotel: ${hotel.nombre}, Categoría: ${hotel.categoria}`;*/
-                option.textContent = `Hotel: ${hotel.nombre}`;
-                hotelSelect.appendChild(option);
-             });
-          })
-          .catch(error => console.error('Error al obtener hoteles:', error));
+         .then(response => response.json())
+         .then(data => {
+            console.log('Datos de hoteles recibidos:', data);
+            const hotelSelect = document.getElementById('hotel');
+            hotelSelect.innerHTML = '<option value="">Selecciona una opción</option>';
+            data.forEach(hotel => {
+               const option = document.createElement('option');
+               option.value = hotel.idHotel;
+               /*option.textContent = `Hotel: ${hotel.nombre}, Categoría: ${hotel.categoria}`;*/
+               option.textContent = `Hotel: ${hotel.nombre}`;
+               hotelSelect.appendChild(option);
+            });
+         })
+         .catch(error => console.error('Error al obtener hoteles:', error));
    }
 
    function populateVuelos(personas) {
       console.log(`Fetching vuelos for ${personas} personas`);
       fetch(`http://localhost:8001/vuelos/all/${personas}`)
-          .then(response => {
-             console.log(`Response status: ${response.status}`);
-             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-             }
-             return response.json();
-          })
-          .then(data => {
-             console.log('Datos de vuelos recibidos:', data);
-             const vueloSelect = document.getElementById('vuelo');
-             vueloSelect.innerHTML = '<option value="">Selecciona una opción</option>';
-             if (data.length === 0) {
-                console.warn('No se encontraron vuelos para el número de pasajeros especificado.');
-                vueloSelect.innerHTML += '<option value="">No hay vuelos disponibles</option>';
-             } else {
-                data.forEach(vuelo => {
-                   const option = document.createElement('option');
-                   option.value = vuelo.idvuelo;
-                   option.textContent = `Vuelo: ${vuelo.company}`;
-                   vueloSelect.appendChild(option);
-                });
-             }
-          })
-          .catch(error => console.error('Error al obtener vuelos:', error));
+         .then(response => {
+            console.log(`Response status: ${response.status}`);
+            if (!response.ok) {
+               throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+         })
+         .then(data => {
+            console.log('Datos de vuelos recibidos:', data);
+            const vueloSelect = document.getElementById('vuelo');
+            vueloSelect.innerHTML = '<option value="">Selecciona una opción</option>';
+            if (data.length === 0) {
+               console.warn('No se encontraron vuelos para el número de pasajeros especificado.');
+               vueloSelect.innerHTML += '<option value="">No hay vuelos disponibles</option>';
+            } else {
+               data.forEach(vuelo => {
+                  const option = document.createElement('option');
+                  option.value = vuelo.idvuelo;
+                  option.textContent = `Vuelo: ${vuelo.company}`;
+                  vueloSelect.appendChild(option);
+               });
+            }
+         })
+         .catch(error => console.error('Error al obtener vuelos:', error));
    }
 
    populateHoteles();
@@ -86,33 +86,33 @@ document.addEventListener('DOMContentLoaded', function () {
          },
          body: JSON.stringify({ dni, hotel, nombre, vuelo })
       })
-          .then(response => {
-             if (response.ok) {
-                Swal.fire({
-                   title: 'Reserva Exitosa',
-                   text: 'Su reserva se ha generado con éxito.',
-                   icon: 'success',
-                   confirmButtonText: 'OK'
-                }).then(() => {
-                   window.location.href = 'index.html';
-                });
-             } else {
-                Swal.fire({
-                   title: 'Error',
-                   text: 'Error al generar la reserva.',
-                   icon: 'error',
-                   confirmButtonText: 'OK'
-                });
-             }
-          })
-          .catch(error => {
-             console.error('Error al generar reserva:', error);
-             Swal.fire({
-                title: 'Error',
-                text: 'Ocurrió un error al procesar su solicitud.',
-                icon: 'error',
-                confirmButtonText: 'OK'
-             });
-          });
+         .then(response => {
+            if (response.ok) {
+               Swal.fire({
+                  title: 'Reserva Exitosa',
+                  text: 'Su reserva se ha generado con éxito.',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+               }).then(() => {
+                  window.location.href = 'index.html';
+               });
+            } else {
+               Swal.fire({
+                  title: 'Error',
+                  text: 'Error al generar la reserva.',
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+               });
+            }
+         })
+         .catch(error => {
+            console.error('Error al generar reserva:', error);
+            Swal.fire({
+               title: 'Error',
+               text: 'Ocurrió un error al procesar su solicitud.',
+               icon: 'error',
+               confirmButtonText: 'OK'
+            });
+         });
    });
 });

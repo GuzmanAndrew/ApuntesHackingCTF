@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Aplicación de Reservas</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+   <div class="container mt-5">
+      <h1 class="text-center">Aplicación de Reservas</h1>
+
+      <div class="mt-4">
+         <h2>Microservicio Reservas</h2>
+         <button id="getReservasBtn" class="btn btn-primary mb-3">Obtener Reservas</button>
+         <a href="formulario.html" class="btn btn-success mb-3">Crear Nueva Reserva</a>
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th>ID Reserva</th>
+                  <th>DNI</th>
+                  <th>Hotel</th>
+                  <th>Nombre</th>
+                  <th>Vuelo</th>
+               </tr>
+            </thead>
+            <tbody id="reservasTableBody"></tbody>
+         </table>
+      </div>
+   </div>
+
+   <script src="js/home.js"></script>
+</body>
+
+</html>
