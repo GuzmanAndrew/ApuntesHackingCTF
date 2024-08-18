@@ -1,6 +1,6 @@
-package com.ctf.usuarios_servicio.jwt;
+package com.ctf.hotel_servicio.jwt;
 
-import com.ctf.usuarios_servicio.exceptions.JwtAuthenticationException;
+import com.ctf.hotel_servicio.exceptions.JwtAuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -21,7 +21,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.security.Key;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

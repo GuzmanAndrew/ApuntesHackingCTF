@@ -1,14 +1,10 @@
-package com.ctf.reservas_servicio.models;
+package com.ctf.reservas_servicio.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * The persistent class for the reservas database table.
- * 
- */
 @Data
 @Entity
 @Table(name="reservas")
@@ -21,14 +17,12 @@ public class Reserva {
 	@Column(name = "idreserva")
 	private int idreserva;
 
-	@Column(name = "dni")
-	private String dni;
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuario;
 
 	@Column(name = "hotel")
 	private int hotel;
-
-	@Column(name = "nombre")
-	private String nombre;
 
 	@Column(name = "vuelo")
 	private int vuelo;

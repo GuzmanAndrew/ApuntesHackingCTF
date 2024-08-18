@@ -1,14 +1,12 @@
-package com.ctf.usuarios_servicio.jwt;
+package com.ctf.reservas_servicio.jwt;
 
-import com.ctf.usuarios_servicio.exceptions.JwtAuthenticationException;
+import com.ctf.reservas_servicio.exceptions.JwtAuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +19,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.security.Key;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

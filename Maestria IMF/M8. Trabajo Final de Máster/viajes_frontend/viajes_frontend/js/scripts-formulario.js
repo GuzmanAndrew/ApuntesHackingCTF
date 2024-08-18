@@ -4,8 +4,27 @@ document.addEventListener('DOMContentLoaded', function () {
    const reservaFormContainer = document.getElementById('reservaFormContainer');
 
    function populateHoteles() {
-      fetch('http://localhost:8000/hoteles/all')
-         .then(response => response.json())
+
+      const token = localStorage.getItem('jwt');
+
+      if (!token) {
+         alert('Debes iniciar sesión para obtener las reservas.');
+         return;
+      }
+
+      fetch('http://localhost:8000/hoteles/all', {
+         method: 'GET',
+         headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+         }
+      })
+         .then(response => {
+            if (!response.ok) {
+               throw new Error('Error en la respuesta al obtener reservas');
+            }
+            return response.json();
+         })
          .then(data => {
             console.log('Datos de hoteles recibidos:', data);
             const hotelSelect = document.getElementById('hotel');
@@ -22,10 +41,22 @@ document.addEventListener('DOMContentLoaded', function () {
    }
 
    function populateVuelos(personas) {
-      console.log(`Fetching vuelos for ${personas} personas`);
-      fetch(`http://localhost:8001/vuelos/all/${personas}`)
+
+      const token = localStorage.getItem('jwt');
+
+      if (!token) {
+         alert('Debes iniciar sesión para obtener las reservas.');
+         return;
+      }
+
+      fetch(`http://localhost:8001/vuelos/all/${personas}`, {
+         method: 'GET',
+         headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+         }
+      })
          .then(response => {
-            console.log(`Response status: ${response.status}`);
             if (!response.ok) {
                throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -55,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
    nextBtn.addEventListener('click', function () {
       const personasInput = document.getElementById('personas');
       const pasajeros = personasInput.value;
-      console.log(`Personas input: ${pasajeros}`); // Agregar registro de depuración
+      console.log(`Personas input: ${pasajeros}`);
       if (pasajeros) {
          step1.style.display = 'none';
          reservaFormContainer.style.display = 'block';
@@ -79,9 +110,18 @@ document.addEventListener('DOMContentLoaded', function () {
       const vuelo = document.getElementById('vuelo').value;
       const personas = document.getElementById('personas').value;
 
+      const token = localStorage.getItem('jwt');
+
+      if (!token) {
+         console.error('No se encontró el token en localStorage');
+         alert('Debes iniciar sesión para obtener las reservas.');
+         return;
+      }
+
       fetch(`http://localhost:8002/reservas/save/${personas}`, {
          method: 'POST',
          headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
          },
          body: JSON.stringify({ dni, hotel, nombre, vuelo })
