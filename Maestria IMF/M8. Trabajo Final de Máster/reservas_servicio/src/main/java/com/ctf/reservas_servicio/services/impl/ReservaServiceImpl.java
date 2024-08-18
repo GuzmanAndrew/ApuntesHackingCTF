@@ -1,5 +1,8 @@
 package com.ctf.reservas_servicio.services.impl;
 
+import com.ctf.reservas_servicio.dto.HotelDTO;
+import com.ctf.reservas_servicio.dto.ReservaDTO;
+import com.ctf.reservas_servicio.dto.VueloDTO;
 import com.ctf.reservas_servicio.entities.Reserva;
 import com.ctf.reservas_servicio.entities.Usuario;
 import com.ctf.reservas_servicio.exceptions.UserNotFoundException;
@@ -14,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,9 +32,9 @@ public class ReservaServiceImpl implements ReservaService {
     @Autowired
     private RestTemplate template;
 
-    private String urlVuelos = "http://localhost:8001/vuelos";
+    private String urlVuelos = "http://vuelos-servicio:8001/vuelos";
 
-    private String urlUsuarios = "http://localhost:8003/usuarios/by-username";
+    private String urlUsuarios = "http://usuarios-servicio:8003/usuarios/by-username";
 
     @Override
     public void realizarReserva(Reserva reserva, int totalPersonas, String token) {
@@ -62,8 +66,43 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public List<Reserva> getReservas(String usuario) {
-        return reservaRepository.findByUsuario_Usuario(usuario);
+    public List<ReservaDTO> getReservas(String usuario, String token) {
+        List<Reserva> reservas = reservaRepository.findByUsuario_Usuario(usuario);
+        List<ReservaDTO> reservasDTO = new ArrayList<>();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", token);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        for (Reserva reserva : reservas) {
+            ResponseEntity<HotelDTO> hotelResponse = template.exchange(
+                    "http://hoteles-servicio:8000/hoteles/by-id/" + reserva.getHotel(),
+                    HttpMethod.GET,
+                    entity,
+                    HotelDTO.class);
+
+            String hotelNombre = hotelResponse.getBody().getNombre();
+
+            ResponseEntity<VueloDTO> vueloResponse = template.exchange(
+                    "http://vuelos-servicio:8001/vuelos/by-id/" + reserva.getVuelo(),
+                    HttpMethod.GET,
+                    entity,
+                    VueloDTO.class);
+
+            String vueloCompania = vueloResponse.getBody().getCompany();
+
+            ReservaDTO reservaDTO = new ReservaDTO(
+                    reserva.getIdreserva(),
+                    hotelNombre,
+                    vueloCompania,
+                    reserva.getUsuario().getUsuario()
+            );
+
+            reservasDTO.add(reservaDTO);
+        }
+
+        return reservasDTO;
     }
 
     @Override

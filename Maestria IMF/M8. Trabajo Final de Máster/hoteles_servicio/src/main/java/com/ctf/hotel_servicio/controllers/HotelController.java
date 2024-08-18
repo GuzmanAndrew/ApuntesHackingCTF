@@ -1,12 +1,11 @@
 package com.ctf.hotel_servicio.controllers;
 
-import com.ctf.hotel_servicio.models.Hotel;
-import com.ctf.hotel_servicio.services.HotelServiceImpl;
+import com.ctf.hotel_servicio.entities.Hotel;
+import com.ctf.hotel_servicio.services.impl.HotelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,10 @@ public class HotelController {
     @GetMapping("/all")
     private List<Hotel> devolverHoteles() {
         return service.devolverHotelesDisponibles();
+    }
+
+    @GetMapping("/by-id/{id}")
+    private ResponseEntity<Hotel> obtenerUsuarioPorId(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(service.obtenerHotelPorId(id), HttpStatus.OK);
     }
 }

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
          return;
       }
 
-      fetch('http://localhost:8000/hoteles/all', {
+      fetch('http://localhost:8083/hoteles/all', {
          method: 'GET',
          headers: {
             'Authorization': `Bearer ${token}`,
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
          })
          .then(data => {
-            console.log('Datos de hoteles recibidos:', data);
             const hotelSelect = document.getElementById('hotel');
             hotelSelect.innerHTML = '<option value="">Selecciona una opción</option>';
             data.forEach(hotel => {
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
          return;
       }
 
-      fetch(`http://localhost:8001/vuelos/all/${personas}`, {
+      fetch(`http://localhost:8085/vuelos/all/${personas}`, {
          method: 'GET',
          headers: {
             'Authorization': `Bearer ${token}`,
@@ -63,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
          })
          .then(data => {
-            console.log('Datos de vuelos recibidos:', data);
             const vueloSelect = document.getElementById('vuelo');
             vueloSelect.innerHTML = '<option value="">Selecciona una opción</option>';
             if (data.length === 0) {
@@ -86,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
    nextBtn.addEventListener('click', function () {
       const personasInput = document.getElementById('personas');
       const pasajeros = personasInput.value;
-      console.log(`Personas input: ${pasajeros}`);
       if (pasajeros) {
          step1.style.display = 'none';
          reservaFormContainer.style.display = 'block';
@@ -104,9 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
    const reservaForm = document.getElementById('reservaForm');
    reservaForm.addEventListener('submit', function (event) {
       event.preventDefault();
-      const dni = document.getElementById('dni').value;
       const hotel = document.getElementById('hotel').value;
-      const nombre = document.getElementById('nombre').value;
       const vuelo = document.getElementById('vuelo').value;
       const personas = document.getElementById('personas').value;
 
@@ -118,13 +113,24 @@ document.addEventListener('DOMContentLoaded', function () {
          return;
       }
 
-      fetch(`http://localhost:8002/reservas/save/${personas}`, {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const username = payload.username;
+
+      const requestBody = {
+         hotel: hotel,
+         vuelo: vuelo,
+         usuario: {
+            usuario: username
+         }
+      };
+
+      fetch(`http://localhost:8084/reservas/save/${personas}`, {
          method: 'POST',
          headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
          },
-         body: JSON.stringify({ dni, hotel, nombre, vuelo })
+         body: JSON.stringify(requestBody)
       })
          .then(response => {
             if (response.ok) {
@@ -134,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   icon: 'success',
                   confirmButtonText: 'OK'
                }).then(() => {
-                  window.location.href = 'index.html';
+                  window.location.href = 'home.html';
                });
             } else {
                Swal.fire({

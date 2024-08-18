@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      fetch('http://localhost:8004/authenticate', {
+      fetch('http://localhost:8081/authenticate', {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const correo = document.getElementById('registerCorreo').value;
       const telefono = document.getElementById('registerTelefono').value;
 
-      fetch('http://localhost:8003/usuarios/create', {
+      fetch('http://localhost:8082/usuarios/create', {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',

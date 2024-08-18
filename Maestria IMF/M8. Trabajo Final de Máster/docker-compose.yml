@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: passwdroot
+      MYSQL_DATABASE: viajes
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  autenticacion-servicio:
+    image: andrewramirez/autenticacion-servicio
+    ports:
+      - "8081:8004"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/viajes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwdroot
+
+  usuarios-servicio:
+    image: andrewramirez/usuarios-servicio
+    ports:
+      - "8082:8003"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/viajes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwdroot
+
+  hoteles-servicio:
+    image: andrewramirez/hoteles-servicio
+    ports:
+      - "8083:8000"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/viajes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwdroot
+
+  reservas-servicio:
+    image: andrewramirez/reservas-servicio
+    ports:
+      - "8084:8002"
+    depends_on:
+      - mysql
+      - hoteles-servicio
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/viajes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwdroot
+
+  vuelos-servicio:
+    image: andrewramirez/vuelos-servicio
+    ports:
+      - "8085:8001"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/viajes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: passwdroot
+
+  webapp:
+    image: andrewramirez/webapp
+    ports:
+      - "8080:80"
+    depends_on:
+      - autenticacion-servicio
+      - usuarios-servicio
+      - hoteles-servicio
+      - reservas-servicio
+      - vuelos-servicio

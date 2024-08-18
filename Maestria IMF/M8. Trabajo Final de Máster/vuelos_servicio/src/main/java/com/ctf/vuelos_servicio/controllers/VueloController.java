@@ -22,6 +22,11 @@ public class VueloController {
         return vueloServiceImpl.recuperarVuelosDisponibles(plazas);
     }
 
+    @GetMapping("/by-id/{id}")
+    private ResponseEntity<Vuelo> obtenerUsuarioPorId(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(vueloServiceImpl.obtenerVueloPorId(id), HttpStatus.OK);
+    }
+
     @PutMapping("/update/{idvuelo}/{plazas}")
     public ResponseEntity<String> modificarVuelo (@PathVariable("idvuelo") int id,
                                           @PathVariable("plazas") int plazas) {

@@ -1,4 +1,4 @@
-package com.ctf.hotel_servicio.models;
+package com.ctf.hotel_servicio.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

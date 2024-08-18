@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,5 +30,10 @@ public class VueloServiceImpl implements VueloService {
             vuelo.setPlazas(vuelo.getPlazas() - plazas);
             vueloRepository.save(vuelo);
         }
+    }
+
+    @Override
+    public Vuelo obtenerVueloPorId(Integer id) {
+        return vueloRepository.findById(id).orElse(null);
     }
 }

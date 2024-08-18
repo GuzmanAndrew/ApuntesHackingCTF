@@ -1,5 +1,6 @@
 package com.ctf.reservas_servicio.controllers;
 
+import com.ctf.reservas_servicio.dto.ReservaDTO;
 import com.ctf.reservas_servicio.entities.Reserva;
 import com.ctf.reservas_servicio.services.impl.ReservaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class ReservaController {
     }
 
     @GetMapping("/all/by-user/{usuario}")
-    public ResponseEntity<List<Reserva>> getReservas(@PathVariable("usuario") String usuario) {
+    public ResponseEntity<List<ReservaDTO>> getReservas(@PathVariable("usuario") String usuario,
+                                                        @RequestHeader("Authorization") String token) {
 
-        return new ResponseEntity<>(reservaService.getReservas(usuario), HttpStatus.OK);
+        return new ResponseEntity<>(reservaService.getReservas(usuario, token), HttpStatus.OK);
     }
 }
