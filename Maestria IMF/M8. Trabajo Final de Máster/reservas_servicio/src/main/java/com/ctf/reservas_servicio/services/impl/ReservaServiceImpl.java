@@ -5,6 +5,7 @@ import com.ctf.reservas_servicio.dto.ReservaDTO;
 import com.ctf.reservas_servicio.dto.VueloDTO;
 import com.ctf.reservas_servicio.entities.Reserva;
 import com.ctf.reservas_servicio.entities.Usuario;
+import com.ctf.reservas_servicio.exceptions.ReservaNotFoundException;
 import com.ctf.reservas_servicio.exceptions.UserNotFoundException;
 import com.ctf.reservas_servicio.repositories.ReservaRepository;
 import com.ctf.reservas_servicio.repositories.UsuarioRepository;
@@ -19,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
@@ -45,8 +47,7 @@ public class ReservaServiceImpl implements ReservaService {
             throw new UserNotFoundException("Usuario no encontrado");
         }
 
-        Usuario usuario = usuarioRepository.findByUsuario(usuarioDto.getUsuario())
-                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado en la base de datos"));
+        Usuario usuario = usuarioRepository.findUsuarioInseguro(usuarioDto.getUsuario());
 
         reserva.setUsuario(usuario);
         reservaRepository.save(reserva);
@@ -124,5 +125,20 @@ public class ReservaServiceImpl implements ReservaService {
         } catch (Exception e) {
             throw new UserNotFoundException("Error al obtener el usuario: " + nombreUsuario, e);
         }
+    }
+
+    @Override
+    public void cancelarReserva(Integer idReserva) {
+        Optional<Reserva> reservaOpt = reservaRepository.findById(idReserva);
+        if (!reservaOpt.isPresent()) {
+            throw new ReservaNotFoundException("Reserva no encontrada");
+        }
+
+        reservaRepository.deleteById(idReserva);
+    }
+
+    @Override
+    public String obtenerInformacionAdicional(String url) {
+        return template.getForObject(url, String.class);
     }
 }

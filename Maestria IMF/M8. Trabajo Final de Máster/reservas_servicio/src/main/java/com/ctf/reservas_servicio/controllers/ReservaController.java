@@ -32,4 +32,16 @@ public class ReservaController {
 
         return new ResponseEntity<>(reservaService.getReservas(usuario, token), HttpStatus.OK);
     }
+
+    @DeleteMapping("/cancel/{id}")
+    public ResponseEntity<String> cancelarReserva(@PathVariable("id") Integer idReserva) {
+        reservaService.cancelarReserva(idReserva);
+        return new ResponseEntity<>("¡Reserva cancelada con éxito!", HttpStatus.OK);
+    }
+
+    @GetMapping("/info-adicional")
+    public ResponseEntity<String> obtenerInformacionAdicional(@RequestParam("url") String url) {
+        String respuesta = reservaService.obtenerInformacionAdicional(url);
+        return new ResponseEntity<>(respuesta, HttpStatus.OK);
+    }
 }

@@ -13,4 +13,8 @@ public interface ReservaService {
     List<ReservaDTO> getReservas(String usuario, String token);
 
     Usuario obtenerUsuarioPorNombre(String nombreUsuario, String token);
+
+    void cancelarReserva(Integer idReserva);
+
+    String obtenerInformacionAdicional(String url);
 }
