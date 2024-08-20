@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Reservas API
+  description: API para la gestión de reservas
+  version: 1.0.0
+servers:
+  - url: http://localhost:8084
+    description: Entorno local
+paths:
+  /reservas/save/{personas}:
+    post:
+      summary: Generar una reserva
+      description: Crea una nueva reserva para un número específico de personas.
+      parameters:
+        - name: personas
+          in: path
+          required: true
+          description: Número de personas para la reserva
+          schema:
+            type: integer
+            example: 2
+        - name: Authorization
+          in: header
+          required: true
+          description: Token de autorización JWT
+          schema:
+            type: string
+            example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reserva'
+      responses:
+        '200':
+          description: Reserva creada con éxito
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Reserva exitosa"
+        '401':
+          description: No autorizado
+        '500':
+          description: Error en el servidor
+  /reservas/all/by-user/{usuario}:
+    get:
+      summary: Obtener reservas por usuario
+      description: Devuelve todas las reservas asociadas a un usuario específico.
+      parameters:
+        - name: usuario
+          in: path
+          required: true
+          description: Nombre de usuario
+          schema:
+            type: string
+            example: "john_doe"
+        - name: Authorization
+          in: header
+          required: true
+          description: Token de autorización JWT
+          schema:
+            type: string
+            example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      responses:
+        '200':
+          description: Lista de reservas obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservaDTO'
+        '401':
+          description: No autorizado
+        '404':
+          description: Reservas no encontradas
+  /reservas/cancel/{id}:
+    delete:
+      summary: Cancelar una reserva
+      description: Cancela una reserva existente por su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la reserva a cancelar
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Reserva cancelada con éxito
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "¡Reserva cancelada con éxito!"
+        '404':
+          description: Reserva no encontrada
+  /reservas/info-adicional:
+    get:
+      summary: Obtener información adicional
+      description: Devuelve información adicional basada en una URL dada.
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: URL para obtener la información adicional
+          schema:
+            type: string
+            example: "https://api.externa.com/info"
+      responses:
+        '200':
+          description: Información obtenida con éxito
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Solicitud incorrecta
+components:
+  schemas:
+    Reserva:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID de la reserva
+          example: 123
+        usuario:
+          type: string
+          description: Nombre del usuario que realiza la reserva
+          example: "john_doe"
+        hotelId:
+          type: integer
+          description: ID del hotel reservado
+          example: 1
+        fechaInicio:
+          type: string
+          format: date
+          description: Fecha de inicio de la reserva
+          example: "2024-08-01"
+        fechaFin:
+          type: string
+          format: date
+          description: Fecha de fin de la reserva
+          example: "2024-08-05"
+    ReservaDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID de la reserva
+          example: 123
+        hotelNombre:
+          type: string
+          description: Nombre del hotel reservado
+          example: "Hotel Continental"
+        fechaInicio:
+          type: string
+          format: date
+          description: Fecha de inicio de la reserva
+          example: "2024-08-01"
+        fechaFin:
+          type: string
+          format: date
+          description: Fecha de fin de la reserva
+          example: "2024-08-05"

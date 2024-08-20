@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Vuelos API
+  description: API para la gestión de vuelos
+  version: 1.0.0
+servers:
+  - url: http://localhost:8085
+    description: Entorno local
+paths:
+  /vuelos/all/{plazas}:
+    get:
+      summary: Obtener vuelos disponibles
+      description: Devuelve una lista de vuelos que tienen al menos el número de plazas especificadas.
+      parameters:
+        - name: plazas
+          in: path
+          required: true
+          description: Número mínimo de plazas disponibles
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: Lista de vuelos obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vuelo'
+        '404':
+          description: Vuelos no encontrados
+  /vuelos/by-id/{id}:
+    get:
+      summary: Obtener vuelo por ID
+      description: Devuelve la información de un vuelo específico basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del vuelo a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Información del vuelo obtenida con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vuelo'
+        '404':
+          description: Vuelo no encontrado
+  /vuelos/update/{idvuelo}/{plazas}:
+    put:
+      summary: Actualizar número de plazas de un vuelo
+      description: Actualiza el número de plazas disponibles para un vuelo específico.
+      parameters:
+        - name: idvuelo
+          in: path
+          required: true
+          description: ID del vuelo a actualizar
+          schema:
+            type: integer
+            example: 1
+        - name: plazas
+          in: path
+          required: true
+          description: Nuevo número de plazas disponibles
+          schema:
+            type: integer
+            example: 150
+      responses:
+        '200':
+          description: Plazas actualizadas con éxito
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Actualización de plazas con éxito"
+        '404':
+          description: Vuelo no encontrado
+components:
+  schemas:
+    Vuelo:
+      type: object
+      properties:
+        idVuelo:
+          type: integer
+          description: ID del vuelo
+          example: 1
+        origen:
+          type: string
+          description: Ciudad de origen
+          example: "Madrid"
+        destino:
+          type: string
+          description: Ciudad de destino
+          example: "Barcelona"
+        fecha:
+          type: string
+          format: date
+          description: Fecha del vuelo
+          example: "2024-08-20"
+        plazasDisponibles:
+          type: integer
+          description: Número de plazas disponibles
+          example: 120

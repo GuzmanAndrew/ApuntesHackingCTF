@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Hoteles API
+  description: API para la gestión de hoteles
+  version: 1.0.0
+servers:
+  - url: http://localhost:8083
+    description: Entorno local
+paths:
+  /hoteles/all:
+    get:
+      summary: Obtener todos los hoteles
+      description: Devuelve una lista de todos los hoteles disponibles.
+      responses:
+        '200':
+          description: Lista de hoteles obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hotel'
+  /hoteles/by-id/{id}:
+    get:
+      summary: Obtener hotel por ID
+      description: Devuelve la información de un hotel específico basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del hotel a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Información del hotel obtenida con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel'
+        '404':
+          description: Hotel no encontrado
+components:
+  schemas:
+    Hotel:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID del hotel
+          example: 1
+        nombre:
+          type: string
+          description: Nombre del hotel
+          example: "Hotel Continental"
+        direccion:
+          type: string
+          description: Dirección del hotel
+          example: "Av. de la Constitución 1, 41004 Sevilla, España"
+        telefono:
+          type: string
+          description: Teléfono del hotel
+          example: "+34 954 56 00 00"
+        disponible:
+          type: boolean
+          description: Indica si el hotel tiene habitaciones disponibles
+          example: true

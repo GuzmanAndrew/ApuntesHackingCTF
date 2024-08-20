@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Autenticación API
+  description: API para autenticación y generación de tokens JWT
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081
+    description: Entorno local
+paths:
+  /authenticate:
+    post:
+      summary: Autenticar usuario
+      description: Genera un token JWT para un usuario autenticado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "usuario"
+                password:
+                  type: string
+                  example: "password"
+      responses:
+        '200':
+          description: JWT generado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '401':
+          description: Credenciales incorrectas
+        '500':
+          description: Error en el servidor
+components:
+  schemas:
+    AuthenticationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Nombre de usuario
+        password:
+          type: string
+          description: Contraseña
+    AuthenticationResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+          description: Token JWT generado
