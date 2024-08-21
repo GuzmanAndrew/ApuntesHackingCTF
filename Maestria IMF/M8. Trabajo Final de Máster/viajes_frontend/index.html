@@ -4,56 +4,91 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Login & Register</title>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <title>Sulamtra - Reserva de Hoteles y Vuelos</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+         <a class="navbar-brand" href="index.html"><img class="logo" src="./assets/Sulamtra_logo.png" alt="logo"></a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="#about">Sobre Nosotros</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#services">Servicios</a>
+               </li>
+               <li class="nav-item">
+                  <a class="btn btn-primary" href="login.html">Login</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
 
-   <div class="container">
-      <div class="row justify-content-center form-container">
-         <div class="col-md-6">
-            <!-- Login Form -->
-            <div id="login-form" class="card">
-               <div class="card-body">
-                  <h3 class="form-heading">Acceso</h3>
-                  <form id="loginForm">
-                     <input type="username" id="username" class="form-control" placeholder="Usuario" required>
-                     <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
-                     <button type="submit" class="btn btn-primary w-100">Acceso</button>
-                  </form>
-                  <div class="text-center mt-3">
-                     <span>¿No tienes una cuenta? <span class="toggle-link"
-                           id="showRegisterForm">Regístrate</span></span>
+   <!-- Hero Section -->
+   <section class="hero bg-primary text-white text-center">
+      <div class="container">
+      </div>
+   </section>
+
+   <!-- About Section -->
+   <section id="about" class="py-5">
+      <div class="container text-center">
+         <h2>Sobre Nosotros</h2>
+         <p class="lead">Somos una empresa líder en la industria de viajes, ofreciendo las mejores tarifas y un servicio
+            al cliente excepcional.</p>
+      </div>
+   </section>
+
+   <!-- Services Section -->
+   <section id="services" class="py-5 bg-light">
+      <div class="container text-center">
+         <h2>Servicios</h2>
+         <div class="row">
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">Reserva de Vuelos</h5>
+                     <p class="card-text">Encuentra las mejores tarifas para tus vuelos.</p>
                   </div>
                </div>
             </div>
-
-            <!-- Register Form -->
-            <div id="register-form" class="card" style="display: none;">
-               <div class="card-body">
-                  <h3 class="form-heading">Registro</h3>
-                  <form id="registerForm">
-                     <input type="text" id="registerUsuario" class="form-control" placeholder="Usuario" required>
-                     <input type="text" id="registerContrasena" class="form-control" placeholder="Contraseña" required>
-                     <input type="text" id="registerNombres" class="form-control" placeholder="Nombres" required>
-                     <input type="text" id="registerApellidos" class="form-control" placeholder="Apellidos" required>
-                     <input type="email" id="registerCorreo" class="form-control" placeholder="Correo" required>
-                     <input type="number" id="registerTelefono" class="form-control" placeholder="Teléfono" required>
-                     <button type="submit" class="btn btn-primary w-100">Registro</button>
-                  </form>
-                  <div class="text-center mt-3">
-                     <span>¿Ya tienes una cuenta? <span class="toggle-link" id="showLoginForm">Iniciar
-                           sesión</span></span>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">Reserva de Hoteles</h5>
+                     <p class="card-text">Hospédate en los mejores hoteles al mejor precio.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">Soporte 24/7</h5>
+                     <p class="card-text">Siempre estamos aquí para ayudarte.</p>
                   </div>
                </div>
             </div>
          </div>
       </div>
-   </div>
+   </section>
 
-   <script src="./js/index.js"></script>
+   <!-- Footer -->
+   <footer class="bg-dark text-white text-center py-3">
+      <p>&copy; 2024 TravelNow. Todos los derechos reservados.</p>
+   </footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

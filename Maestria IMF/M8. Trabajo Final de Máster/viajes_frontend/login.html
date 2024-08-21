@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login & Register</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+   <div class="container">
+      <div class="row justify-content-center form-container">
+         <div class="col-md-6">
+            <!-- Login Form -->
+            <div id="login-form" class="card">
+               <div class="card-body">
+                  <h3 class="form-heading">Acceso</h3>
+                  <form id="loginForm">
+                     <input type="username" id="username" class="form-control" placeholder="Usuario" required>
+                     <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+                     <button type="submit" class="btn btn-primary w-100">Acceso</button>
+                  </form>
+                  <div class="text-center mt-3">
+                     <span>¿No tienes una cuenta? <span class="toggle-link"
+                           id="showRegisterForm">Regístrate</span></span>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="card" style="display: none;">
+               <div class="card-body">
+                  <h3 class="form-heading">Registro</h3>
+                  <form id="registerForm">
+                     <input type="text" id="registerUsuario" class="form-control" placeholder="Usuario" required>
+                     <input type="text" id="registerContrasena" class="form-control" placeholder="Contraseña" required>
+                     <input type="text" id="registerNombres" class="form-control" placeholder="Nombres" required>
+                     <input type="text" id="registerApellidos" class="form-control" placeholder="Apellidos" required>
+                     <input type="email" id="registerCorreo" class="form-control" placeholder="Correo" required>
+                     <input type="number" id="registerTelefono" class="form-control" placeholder="Teléfono" required>
+                     <button type="submit" class="btn btn-primary w-100">Registro</button>
+                  </form>
+                  <div class="text-center mt-3">
+                     <span>¿Ya tienes una cuenta? <span class="toggle-link" id="showLoginForm">Iniciar
+                           sesión</span></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="./js/index.js"></script>
+</body>
+
+</html>
