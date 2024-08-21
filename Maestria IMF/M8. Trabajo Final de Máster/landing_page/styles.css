@@ -1,0 +1,26 @@
+body {
+   font-family: Arial, sans-serif;
+}
+
+.hero {
+   padding: 100px 0;
+   background: url('./assets/banner.png') no-repeat center center;
+   background-size: cover;
+   height: 31rem;
+}
+
+.card {
+   margin-bottom: 30px;
+}
+
+footer {
+   background-color: #333;
+}
+
+footer p {
+   margin: 0;
+}
+
+.logo {
+   width: 13rem;
+}
