@@ -15,7 +15,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepositoryCustom {
 
    @Override
    public Usuario findUsuarioInseguro(String username) {
-      String hql = "SELECT u FROM Usuario u WHERE u.username= '" + username + "'";
+      String hql = "SELECT u FROM Usuario u WHERE u.usuario = '" + username + "'";
       Query query = em.createQuery(hql);
       return (Usuario) query.getSingleResult();
    }
