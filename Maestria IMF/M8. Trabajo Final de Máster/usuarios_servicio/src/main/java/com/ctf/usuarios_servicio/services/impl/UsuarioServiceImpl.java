@@ -3,9 +3,7 @@ package com.ctf.usuarios_servicio.services.impl;
 import com.ctf.usuarios_servicio.entities.Usuario;
 import com.ctf.usuarios_servicio.repositories.UsuarioRepository;
 import com.ctf.usuarios_servicio.services.UsuarioService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +31,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
    @Override
    public Usuario obtenerUsuarioPorNombre(String nombre) {
-      String hql = "SELECT u FROM Usuario u WHERE u.usuario = '" + nombre + "'";
-      Query query = em.createQuery(hql);
-      return (Usuario) query.getSingleResult();
+      String sql =  "SELECT * FROM usuarios WHERE usuario = '" + nombre + "'";
+      System.out.println("QUERY: " + sql);
+      Query query = em.createNativeQuery(sql, Usuario.class);
+      List<Usuario> resultados = query.getResultList();
+
+      if (resultados.size() == 1) {
+         return resultados.get(0);
+      } else if (resultados.isEmpty()) {
+         throw new EntityNotFoundException("No se encontró ningún usuario con ese nombre");
+      } else {
+         throw new NonUniqueResultException("La consulta devolvió más de un resultado");
+      }
    }
 
    @Override
