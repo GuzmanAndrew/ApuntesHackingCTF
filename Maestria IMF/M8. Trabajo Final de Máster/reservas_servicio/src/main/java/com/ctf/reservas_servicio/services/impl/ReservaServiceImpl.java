@@ -8,7 +8,6 @@ import com.ctf.reservas_servicio.entities.Usuario;
 import com.ctf.reservas_servicio.exceptions.ReservaNotFoundException;
 import com.ctf.reservas_servicio.exceptions.UserNotFoundException;
 import com.ctf.reservas_servicio.repositories.ReservaRepository;
-import com.ctf.reservas_servicio.repositories.UsuarioRepository;
 import com.ctf.reservas_servicio.services.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -29,9 +28,6 @@ public class ReservaServiceImpl implements ReservaService {
     private ReservaRepository reservaRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
     private RestTemplate template;
 
     private String urlVuelos = "http://vuelos-servicio:8001/vuelos";
@@ -47,9 +43,7 @@ public class ReservaServiceImpl implements ReservaService {
             throw new UserNotFoundException("Usuario no encontrado");
         }
 
-        Usuario usuario = usuarioRepository.findUsuarioInseguro(usuarioDto.getUsuario());
-
-        reserva.setUsuario(usuario);
+        reserva.setUsuario(usuarioDto);
         reservaRepository.save(reserva);
 
         HttpHeaders headers = new HttpHeaders();

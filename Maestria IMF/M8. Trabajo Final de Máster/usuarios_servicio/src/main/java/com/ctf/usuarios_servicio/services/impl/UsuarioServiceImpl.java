@@ -3,6 +3,9 @@ package com.ctf.usuarios_servicio.services.impl;
 import com.ctf.usuarios_servicio.entities.Usuario;
 import com.ctf.usuarios_servicio.repositories.UsuarioRepository;
 import com.ctf.usuarios_servicio.services.UsuarioService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
    @Autowired
    private UsuarioRepository usuarioRepository;
+
+   @PersistenceContext
+   private EntityManager em;
 
    @Override
    public List<Usuario> obtenerUsuarios() {
@@ -27,7 +33,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
    @Override
    public Usuario obtenerUsuarioPorNombre(String nombre) {
-      return usuarioRepository.findByUsuario(nombre).orElse(null);
+      String hql = "SELECT u FROM Usuario u WHERE u.usuario = '" + nombre + "'";
+      Query query = em.createQuery(hql);
+      return (Usuario) query.getSingleResult();
    }
 
    @Override
