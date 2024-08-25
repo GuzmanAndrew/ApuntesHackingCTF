@@ -32,12 +32,26 @@ public class UsuarioServiceImpl implements UsuarioService {
 
    @Override
    public Usuario guardarUsuario(Usuario usuario) {
+      if (usuario.getIsAdmin() == null) {
+         usuario.setIsAdmin(false);
+      }
       return usuarioRepository.save(usuario);
    }
 
    @Override
-   public Usuario actualizarUsuario(Usuario usuario) {
-      return usuarioRepository.save(usuario);
+   public Usuario actualizarUsuario(Long id, Usuario usuario) {
+
+      Usuario usuarioExistente = usuarioRepository.findById(id)
+              .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + id));
+
+      usuarioExistente.setUsuario(usuario.getUsuario());
+      usuarioExistente.setContrasena(usuario.getContrasena());
+      usuarioExistente.setNombres(usuario.getNombres());
+      usuarioExistente.setApellidos(usuario.getApellidos());
+      usuarioExistente.setCorreo(usuario.getCorreo());
+      usuarioExistente.setTelefono(usuario.getTelefono());
+
+      return usuarioRepository.save(usuarioExistente);
    }
 
    @Override

@@ -42,16 +42,7 @@ public class UsuarioController {
    private ResponseEntity<Usuario> actualizarUsuario(@PathVariable("id") Long id,
                                                      @RequestBody Usuario usuario){
 
-      Usuario actualizarUsuario = usuarioServiceImpl.obtenerUsuarioPorId(usuario.getIdUsuarios());
-
-      actualizarUsuario.setUsuario(usuario.getUsuario());
-      actualizarUsuario.setContrasena(usuario.getContrasena());
-      actualizarUsuario.setNombres(usuario.getNombres());
-      actualizarUsuario.setApellidos(usuario.getApellidos());
-      actualizarUsuario.setCorreo(usuario.getCorreo());
-      actualizarUsuario.setTelefono(usuario.getTelefono());
-
-      return new ResponseEntity<>(usuarioServiceImpl.actualizarUsuario(usuario), HttpStatus.OK);
+      return new ResponseEntity<>(usuarioServiceImpl.actualizarUsuario(id, usuario), HttpStatus.OK);
    }
 
    @PreAuthorize("hasRole('ADMIN')")

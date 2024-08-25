@@ -55,9 +55,9 @@ CREATE TABLE `reservas` (
   `vuelo` int unsigned NOT NULL,
   `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`idreserva`) USING BTREE,
-  KEY `fk_usuario` (`usuario_id`),
-  CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuarios`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (12,1,2,1),(13,1,2,9),(14,2,2,9);
+INSERT INTO `reservas` VALUES (12,1,2,1),(17,2,2,1);
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(50) DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_usuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'sulam','sulam123*','Andrew','Ramirez','andrew@mail.com','3193798263',1),(9,'test','test123*','Andrew Steeve','Ramirez Guzman','test@mail.com','3193705225',0);
+INSERT INTO `usuarios` VALUES (1,'sulamsec','sulamsec1234*','Andrew','Ramirez','andrew@mail.com','31123212432',1),(15,'test','test123*','test','test','test@mail.com','3112321265',0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `vuelos` (
 
 LOCK TABLES `vuelos` WRITE;
 /*!40000 ALTER TABLE `vuelos` DISABLE KEYS */;
-INSERT INTO `vuelos` VALUES (1,'Iberia','10-12-2017',200,20),(2,'Air Europa','11-12-2027',170,12);
+INSERT INTO `vuelos` VALUES (1,'Iberia','10-12-2017',200,20),(2,'Air Europa','11-12-2027',170,8);
 /*!40000 ALTER TABLE `vuelos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-17 22:47:30
+-- Dump completed on 2024-08-24 20:12:21

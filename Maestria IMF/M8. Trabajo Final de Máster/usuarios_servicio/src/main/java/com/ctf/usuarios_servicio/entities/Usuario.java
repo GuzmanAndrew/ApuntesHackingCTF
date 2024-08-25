@@ -15,7 +15,7 @@ public class Usuario {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id_usuarios")
-   private Long idUsuarios;
+   private Long idUsuario;
 
    @Column(name = "usuario")
    private String usuario;
@@ -34,5 +34,8 @@ public class Usuario {
 
    @Column(name = "telefono")
    private String telefono;
+
+   @Column(name = "is_admin")
+   private Boolean isAdmin;
 
 }
